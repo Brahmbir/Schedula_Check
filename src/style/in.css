@@ -1,0 +1,19 @@
+canvas{
+    position: absolute;
+    border-radius:5px ;
+    right: 4vw;
+    left: 4vw;
+    width: 92vw;
+    height: 28vh;
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+    background-color:whitesmoke;
+    bottom: 12vh;
+  }
+  
+  @media (max-width: 1000px) {
+    canvas{
+      display: none;
+    }
+     
+    
+  }

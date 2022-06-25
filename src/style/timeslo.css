@@ -1,0 +1,54 @@
+.timeslot{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5vw;
+  width: auto;
+  height: 35px;
+  margin-block:10px;
+  margin-inline:10px ;
+  padding-block: 5px;
+  border-radius:6px ;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #A5BECC;
+}
+  
+.timeslot p{
+  margin-inline: 3%;
+  font-size: large;
+}
+.timeslot input{
+  padding-inline: 2px;
+  border-radius: 5px;
+  border: 0;
+  height: 25px;
+  width:100px ;
+}
+.timeslot input:focus ,.timeslot input:active{
+  border: 0;
+  height: 25px;
+  width:100px ;
+}
+.but{
+  margin-inline:auto 3%;
+  height: 40px;
+  width: 40px;
+  padding: 10px;
+  border: 0px;
+  border-radius: 50%;
+  background-color:rgba(219, 49, 49, 0);
+  transition: background-color ease 0.3s
+}
+.but:hover{
+  background-color:#d6f0ff ;
+}
+.but:active{
+  background-color: whitesmoke;
+}
+.but img{
+  user-select: none;
+  height: 100%;
+  width: auto;
+  margin: 0px;
+}  
