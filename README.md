@@ -1,6 +1,6 @@
 <h1 align="center"> Schedula_Check  </h1>
 
-<h3>>description</h3>
+<h2>  >description  </h2>
 
 Schedula_check is a react base website page which compute available meeting time from two person's schedule  
 
@@ -21,7 +21,7 @@ npm run dev
 
 ### Build
 ```sh
-yarn run build
+npm run build
 ```
 
 ## Author
