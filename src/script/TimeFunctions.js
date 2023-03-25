@@ -1,22 +1,8 @@
 let [minimum,maximum, list] =[,,[]] ;
 
-function toDate(str){
+export function toDate(str){
     return new Date(2000,1,1 ,str.split(":")[0],str.split(":")[1],0);
     }
-
-function timeList(pers,lim){
-    let result = [];
-    result.push(lim[0]);
-    for (const i of pers) {
-        for (const j of i) {
-            if(result.includes(j)){
-                result.splice(result.indexOf(j)) }
-            else{result.push(j);}
-            }}
-    result.push(lim[1]);
-    for (let i in result) {  result[i] = toDate(result[i]);  }
-    return result;
-}
 
 function freeTime(list){
     let result = [];
@@ -27,7 +13,7 @@ function freeTime(list){
 }
 
 function diffTime(arra,bool=0){
-    let diff =new Array();
+    let diff = new Array();
     for (let i of arra) {
         let temp = ((i[1]-i[0])/60000)
         if(temp){
@@ -41,7 +27,7 @@ function diffTime(arra,bool=0){
 }
 
 
-function check(freetim,person2,tostring=0){
+function check(freetim,person2,tostring = false){
     let result= new Array();
     let mind ,maxd ,dur;
     for (const i of freetim ) {
@@ -65,168 +51,63 @@ function check(freetim,person2,tostring=0){
     }
     return result;
 }
-export function subTime(li,mi){
 
+function timeListSet(array){
     let result = [];
-    for (const i of li) {
-        result.push( toDate(i) - mi )
+    for(const i of array){
+        let ok = 1;
+        for (const j of result) {
+           if(j[0]==i[0]&&j[1]==i[1]){
+                ok = 0;
+                break;
+            }
         }
-    return result
+        if(ok){ result.push(i);}
+    }
+    return result;
+}
+function time_List(person,limit){
+    let result = [];
+    result.push(limit[0]);
+    for (let i of person) {
+        for (let j of i) {
+            if(result.includes(j)){
+                result.splice(result.indexOf(j)) }
+            else{result.push(j);}
+            }}
+    result.push(limit[1]);
+    for (let i in result) {  result[i] = toDate(result[i]);  }
 
+    return result;
 }
 
-export function fun([p1,limit1,p2,limit2],tostring){ 
-    let min,max;
-    let time1 = timeList(p1,limit1);
-    let time2 = timeList(p2,limit2);
+export function avaTime([p1,limit1,p2,limit2],tostring){ 
+    // reset data for canvas
+    list =[];
     
-    time1[0] > time2[0] ? min =time2[0] :  min =time1[0]; 
-    time1[time1.length -1] < time2[time1.length -1] ? max =time2[time1.length -1] :  max =time1[time1.length -1];
+    // here was the error 
+    //     I wrote 2 instead of 1       👇    
+    // let diff1 = diffTime(freeTime(time2));
 
-    let diff1 = diffTime(freeTime(time2));
-    let diff2 = diffTime(freeTime(time2));
-
-    let result = check(diff1, diff2 ,tostring);
-    let lis = [];
+    // available time period of person 1
+    let TListOfPerson1 = time_List(timeListSet(p1),limit1);
+    let timeDiffOfPreson1 = diffTime(freeTime(TListOfPerson1));
+    
+    // available time period of person 1
+    let TListOfPerson2 = time_List(timeListSet(p2),limit2);
+    let timeDiffOfPreson2 = diffTime(freeTime(TListOfPerson2));
+    
+    let result = check(timeDiffOfPreson1, timeDiffOfPreson2 ,tostring);
+    
+    // data for canvas
     for (const i of result) {
-        lis.push(i[0][0]);
-        lis.push(i[0][1]);
+        list.push(i[0][0]);
+        list.push(i[0][1]);
     }
+    toDate(limit1[0]) > toDate(limit2[0]) ? minimum = limit2[0] :  minimum = limit1[0];
+    toDate(limit1[1]) > toDate(limit2[1]) ? maximum = limit2[1] :  maximum = limit1[1]; 
 
-    // console.log(max)
-    list = lis;
-    minimum = min;
-
-    time1[time1.length -1] < time2[time1.length -1] ? max =time2[time1.length -1] :  max =time1[time1.length -1];
-
-    maximum = 810*60000;
-    return [result]
+    return result
 }
 
 export {minimum,list,maximum}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export function toDate(str,bool=1){
-//     if(bool==0){
-//         return str;        
-//     }
-//     else{
-
-//         return new Date(2000,1,1 ,str.split(":")[0],str.split(":")[1],0);
-//     }
-
-
-
-// export function timeList( person,limitTime){
-//     let listOfTime = new Array();
-
-//     // console.log(setv(person,limitTime));
-
-//     listOfTime.push(toDate(limitTime[0]));
-//     for (const i of person) {
-//         for (const j of i){
-//             if (toDate(j) in listOfTime){}
-//             else{
-//                 listOfTime.push(toDate(j));
-//             }
-//         }     
-//     }
-//     listOfTime.push(toDate(limitTime[1]));    
-//     return listOfTime;
-// }
-
-
-
-
-
-
-// }
-
-// export function timeList( person,limitTime,bool=1){
-
-//     let listOfTime = new Array();
-
-//     console.log(limitTime);
-//     limitTime == undefined ? console.log('1')  : listOfTime.push(toDate(limitTime[0],bool));
-
-//     for (const i of person) {
-//         for (const j of i){
-//             listOfTime.push(toDate(j,bool));
-//         }     
-//     }
-//     limitTime ? console.log('1') : listOfTime.push(toDate(limitTime[0],bool));
-    
-//     return listOfTime;
-// }
-
-
-
-
-// export function freeTime(list){
-//     let result=new Array();
-//     for (let i=0;i<list.length;++i){
-
-
-//         result.push([list[i],list[++i]]);
-        
-
-//     }
-//     return result;
-// }
-
-
-
-
-
-// export function diffTime(arra,bool=0){
-//     let diff =new Array();
-//     for (let i of arra) {
-//         let temp = ((i[1]-i[0])/60000)
-//         if(temp){
-//             diff.push([i,temp]);
-//         }
-//         else{
-//            bool ? diff.push([i,temp]):diff; 
-//         }
-//     }
-//     return diff;
-// }
-
-
-
-
-
-// export function check(free,person2){
-//     let result= new Array();
-//     let min ,max;
-//     for (const i of free ) {
-//         for (let j=1 ; j <person2.length; ++j ) {
-//             console.log(person2[j]);
-//             //   preson2[j]<=i[0][0] && 
-
-//             if(  person2[j] <= i[0][0] && i[0][1] <=person2[++j] ){
-//                  result.push([person2[j-1],person2[j]]);
-
-//             }
-
-//         }
-        
-//     }
-//     return result;
-
-// }

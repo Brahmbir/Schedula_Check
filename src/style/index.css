@@ -1,43 +1,44 @@
 body {
   margin: 0;
   position: relative;
-  margin-top:7vh ;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  margin-top: 16vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   overflow: hidden;
   user-select: none;
-  background-color: #F2EBE9;
+  background-color: #f2ebe9;
 }
-.card{
+.card {
   width: 90vw;
   height: 84vh;
-  padding: 8vh 5vw;
+  padding-bottom: 8vh;
+  padding-inline: 5vw;
   overflow: hidden;
   display: grid;
   grid-template-columns: 1.1fr 0.8fr 1.1fr;
   grid-template-rows: 1.2fr 0.8fr;
   gap: 5vh 1vw;
 }
-h1{
+h1 {
   position: absolute;
   margin-left: -2vw;
   margin-top: -10vh;
 }
 @media (max-width: 1000px) {
-  body{
-    top:3vh;
+  body {
+    padding-top: 10vh;
     display: hidden;
     margin: 0;
   }
-  h1{
-    top:10vh;
+  h1 {
+    top: 12vh;
   }
-  .card{
+  .card {
+    overflow: visible;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     gap: 5vh 1vw;
     overflow-y: scroll;
   }
- 
 }
